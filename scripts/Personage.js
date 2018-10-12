@@ -3,19 +3,6 @@ class PersonageElement extends GameElement {
       super ()
       this.mode = 'stop'
       this.elem.style.zIndex = "1000"
-      // this.onclick = function ( event ) {
-      //     if ( self.timeout ) clearTimeout ( self.timeout )
-      //     if ( this.mode === 'break' ) return
-      //     this.mode = 'break'
-      //     this.breakAll( this.character === 'good' ? "0" : "90" )
-      // }
-      // this.ondblclick = function ( event ) {
-      //     this.mode = 'stop'
-      //     if ( self.timeout ) clearTimeout ( self.timeout )
-      // }
-      // this.elem.oncontextmenu = function ( event ) {
-      //     event.preventDefault ()
-      // }
       this.oncontextmenu = function ( event ) {
           event.preventDefault ()
           var sel = document.createElement ( 'context-menu' )

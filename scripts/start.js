@@ -51,11 +51,11 @@ function showFone () {
         })( item ) )
     })
 
-    badPersonage = document.createElement ( 'bad-boy' )
-    document.body.appendChild ( badPersonage )
-    badPersonage.setImage ( personages [5] )
-    badPersonage.setHeight ( 200 )
-    badPersonage.getRelativePosition ()
+    // badPersonage = document.createElement ( 'bad-boy' )
+    // document.body.appendChild ( badPersonage )
+    // badPersonage.setImage ( personages [5] )
+    // badPersonage.setHeight ( 200 )
+    // badPersonage.getRelativePosition ()
 }
 
 window.addEventListener ( 'resize', function ( event ) {
