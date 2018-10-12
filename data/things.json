@@ -1,0 +1,62 @@
+[
+    {
+      "url": "./mebel/04.png",
+      "height": 400,
+      "title": "шкаф",
+      "position": [ 0.05, 0.1 ]
+    },
+    {
+        "url": "./mebel/05.png",
+        "height": 250,
+        "title": "стул",
+        "position": [ 0.3, 0.3 ]
+    },
+    {
+        "url": "./mebel/01.png",
+        "height": 220,
+        "title": "кресло-качалка",
+        "position": [ 0.7, 0.5 ]
+    },
+    {
+        "url": "./mebel/13.png",
+        "height": 200,
+        "title": "кресло",
+        "position": [ 0.8, 0.3 ]
+    },
+    {
+        "url": "./mebel/09.png",
+        "height": 150,
+        "title": "столик",
+        "position": [ 0.5, 0.5 ]
+    },
+    {
+        "url": "./mebel/08.png",
+        "height": 300,
+        "title": "кресло вертящееся",
+        "position": [ 0.4, 0.7 ]
+    },
+    {
+        "url": "./mebel/07.png",
+        "height": 350,
+        "title": "доска-тренога",
+        "position": [ 0.5, 0.15 ]
+    },
+    {
+        "url": "./mebel/02.png",
+        "height": 220,
+        "title": "лампа",
+        "position": [ 0.7, 0.3 ]
+    },
+    {
+        "url": "./mebel/11.png",
+        "height": 120,
+        "title": "лампа",
+        "position": [ 0.1, 0.5 ]
+    },
+    {
+        "url": "./mebel/12.png",
+        "height": 100,
+        "title": "игрушка мягкая",
+        "position": [ 0.2, 0.8 ]
+    }
+]

@@ -1,0 +1,10 @@
+.fone {
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    background-image: url(../mebel/fone.jpg);
+    /*background-image: url(https://dvamolotka.ru/image/3/qJmia17NG0sfFzpA.jpg);*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom center;
+}
