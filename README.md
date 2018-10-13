@@ -35,7 +35,7 @@ var scamp = document.body.appendChild (
 ```javascript
 guy.setImage ( personages [3] )
 ```
-В вашем распоряжении куча персонажей [:arrow_right_hook:](https://github.com/garevna/game/wiki)
+В вашем распоряжении куча персонажей [:fast_forward:](https://github.com/garevna/game/wiki/personages)
 
 Это элементы массива **`personages`**
 
