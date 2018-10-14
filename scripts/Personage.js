@@ -5,29 +5,26 @@ class PersonageElement extends GameElement {
       this.elem.style.zIndex = "1000"
       this.oncontextmenu = function ( event ) {
           event.preventDefault ()
-          var sel = document.createElement ( 'context-menu' )
+          let sel = document.createElement ( 'context-menu' )
           document.body.appendChild ( sel )
           sel.setCallback (
-              function ( event ) {
-                 this.mode = event.target.value
-                 this.mode === 'break' ? this.breakAll () :
-                     this.mode === 'shit' ? this.showMustGoOn (
-                        this.character === 'good' ? "0" : "90"
-                     ) : ( this.timeout ? clearTimeout ( this.timeout ) : null )
-                 var el = document.querySelector( 'context-menu' )
-                 el.parentNode.removeChild ( el )
+              function ( id, val ) {
+                 this.mode = id
+                 eval ( val )
               }.bind ( this )
           )
           sel.setOptions ([
-            { text: "...", value: 'stop' },
-            { text: "break", value: 'break' },
-            { text: "shit", value: 'shit' },
-            { text: "stop", value: 'stop' }
+            { text: "...", value: null },
+            { text: "break", value: 'this.breakAll()' },
+            { text: "shit", value: `this.showMustGoOn ( this.character === 'good' ? "0" : "90" )` },
+            { text: "stop", value: `this.timeout ? clearTimeout ( this.timeout ) : null` }
           ])
-          sel.setPosition ([
-              Math.min ( this.elem.offsetLeft + 50, window.innerWidth - 100 ),
-              this.elem.offsetTop + 50
-          ])
+          sel.setPosition (
+            [
+              Math.min ( event.clientX, window.innerWidth - 100 ),
+              Math.min ( event.clientY, window.innerHeight - 150 )
+            ]
+          )
       }
     }
 }
@@ -35,7 +32,7 @@ class PersonageElement extends GameElement {
 PersonageElement.prototype.shits = []
 
 PersonageElement.prototype.walk = function ( newCoordinates ) {
-    var dist = Math.max (
+    let dist = Math.max (
         Math.abs ( newCoordinates [0] - this.elem.offsetLeft ),
         Math.abs ( newCoordinates [1] - this.elem.offsetTop )
     )
@@ -46,7 +43,7 @@ PersonageElement.prototype.walk = function ( newCoordinates ) {
 }
 
 PersonageElement.prototype.getObjects = function ( deg ) {
-    var objects = Array.from (
+    let objects = Array.from (
         document.querySelectorAll ( 'furniture-element' )
     )
     return this.character !== 'good' ?
@@ -55,14 +52,14 @@ PersonageElement.prototype.getObjects = function ( deg ) {
 }
 
 PersonageElement.prototype.breakAll = async function () {
-    var deg = this.character === 'good' ? 0 : 90
-    var self = this
-    var objects = this.getObjects ()
+    let deg = this.character === 'good' ? 0 : 90
+    let self = this
+    let objects = this.getObjects ()
     while ( objects.length > 0 && this.mode === 'break' ) {
-        var obj = objects.shift ()
+        let obj = objects.shift ()
         await new Promise (
             function ( resolve, reject ) {
-               var t = self.walk ( [
+               let t = self.walk ( [
                     obj.elem.offsetLeft + obj.elem.offsetWidth - 50,
                     obj.elem.offsetTop + obj.elem.offsetHeight - self.elem.offsetHeight
                ] )
@@ -100,12 +97,12 @@ class BadPersonage extends PersonageElement {
 }
 
 BadPersonage.prototype.showMustGoOn = async function () {
-    var self = this
+    let self = this
     while ( self.mode === 'shit' ) {
-        var pos = self.getRandomCoordinates ()
+        let pos = self.getRandomCoordinates ()
         await new Promise (
             function ( resolve, reject ) {
-                var t = self.walk ( pos )
+                let t = self.walk ( pos )
                 self.timeout = setTimeout ( resolve, t * 1000 )
             }
         )
@@ -113,7 +110,7 @@ BadPersonage.prototype.showMustGoOn = async function () {
             self.getRelativePosition ()
             self.shits.push (
                 ( function () {
-                    var shit = document.body.appendChild (
+                    let shit = document.body.appendChild (
                         document.createElement ( "img" )
                     )
                     shit.src = self.shitURL
@@ -143,12 +140,12 @@ class HeroPersonage extends PersonageElement {
 }
 
 HeroPersonage.prototype.showMustGoOn = async function () {
-    var self = this
+    let self = this
     while ( self.mode === 'shit' && self.shits.length > 0 ) {
-        var obj = self.shits.shift()
+        let obj = self.shits.shift()
         await new Promise (
               function ( resolve, reject ) {
-                  var t = self.walk ( [
+                  let t = self.walk ( [
                         obj.offsetLeft - 100,
                         obj.offsetTop - 100
                     ] )

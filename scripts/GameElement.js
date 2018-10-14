@@ -29,10 +29,10 @@ class GameElement extends HTMLElement {
     getRandomCoordinates () {
         return [
             Math.floor (
-                Math.random () * ( window.innerWidth - this.offsetWidth - 10 )
+                Math.random () * ( window.innerWidth - this.offsetWidth - 150 )
             ),
             Math.floor (
-                Math.random () * ( window.innerHeight - this.offsetHeight - 10 )
+                Math.random () * ( window.innerHeight - this.offsetHeight - 150 )
             )
         ]
     }
@@ -54,7 +54,6 @@ class GameElement extends HTMLElement {
         this.elem.style.height = newHeight + "px"
     }
     resizeWindow ( event ) {
-        //this.getRelativePosition ()
         this.setPosition (
             [
                 Math.min (
@@ -89,29 +88,31 @@ class FurnitureElement extends GameElement {
       this.break = false
       this.elem.oncontextmenu = function ( event ) {
           event.preventDefault()
-          var sel = document.createElement ( 'context-menu' )
+          let sel = document.createElement ( 'context-menu' )
           sel.setCallback (
-              function ( event ) {
-                 var step = event.target.value
-                 var offset  = event.target.selectedIndex < 3 ? "offsetLeft" : "offsetTop"
-                 var cssAttr = event.target.selectedIndex < 3 ? "left" : "top"
+              function ( id, val ) {
+                 let step = val
+                 let offset  = id === 'right' || id === 'left' ?
+                                      "offsetLeft" : "offsetTop"
+                 let cssAttr = id === 'right' || id === 'left' ?
+                                                  "left" : "top"
                  this.style [ cssAttr ] =
                       Number(this [ offset ]) + Number(step) + "px"
-                 var el = document.querySelector( 'context-menu' )
-                 el.parentNode.removeChild ( el )
               }.bind ( this )
           )
           sel.setOptions ([
             { text: "...", value: null },
-            { text: "left", value: -50 },
+            { text: `left`, value: -50 },
             { text: "right", value: 50 },
             { text: "top", value: -50 },
             { text: "bottom", value: 50 },
           ])
-          sel.setPosition ([
-              Math.min ( this.offsetLeft + 70, window.innerWidth - 100 ),
-              this.offsetTop + 70
-          ])
+          sel.setPosition (
+            [
+              Math.min ( event.clientX, window.innerWidth - 100 ),
+              Math.min ( event.clientY, window.innerHeight - 150 )
+            ]
+          )
           document.body.appendChild ( sel )
       }
     }

@@ -29,7 +29,7 @@ function addElem ( tagName, container ) {
     )
 }
 
-var furniture = []
+let furniture = []
 
 start ()
 
