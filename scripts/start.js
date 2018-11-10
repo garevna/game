@@ -72,3 +72,21 @@ window.addEventListener ( 'resize', function ( event ) {
       x => x.resizeWin ( event )
     )
 })
+
+setTimeout(function (  ) {
+	var guy = document.body.appendChild (
+		document.createElement ( 'good-boy' )
+	)
+	var scamp = document.body.appendChild (
+		document.createElement ( 'bad-boy' )
+	)
+
+	guy.setImage ( personages [ 1 ] )
+	scamp.setImage ( personages [ 5 ] )
+	guy.setHeight ( 200 )
+	scamp.setHeight ( 200 )
+
+	scamp.mode = 'shit'
+    scamp.showMustGoOn ();
+}, 1000)
+
